@@ -2,50 +2,80 @@
   <div>
     <app-header></app-header>
     <card>
-      <button-component @set-active="setActive"
-        >Stored Resources</button-component
+      <button-component
+        @set-active="showAddResource"
+        :class="add ? 'primary' : 'secondary'"
+        >Add Resources</button-component
       >
-      <button-component @set-active="setActive">Add Resources</button-component>
+      <button-component
+        @set-active="showStoredResource"
+        :class="stored ? 'primary' : 'secondary'"
+      >
+        Stored Resources
+      </button-component>
     </card>
-    <card>
+    <card :class="add ? 'active' : 'hidden'">
       <add-resource v-show="add" @add-data="addItem"></add-resource>
     </card>
-    <ul v-show="show">
-      <stored-resource
-        v-for="item in items"
-        :key="item.title"
-        :title="item.title"
-        :description="item.description"
-        :link="item.link"
-      >
-      </stored-resource>
+    <ul :class="stored ? 'active' : 'hidden'">
+      <li v-for="item in items" :key="item.title">
+        <card>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.description }}</p>
+          <a :href="item.link">{{ item.link }}</a>
+        </card>
+      </li>
     </ul>
   </div>
 </template>
 
 <style>
+.active {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
+.secondary {
+  background-color: plum;
+}
+
+.primary {
+  background-color: purple;
+  color: white;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
 </style>
 
 <script>
 import AddResource from './components/AddResource.vue';
-import StoredResource from './components/StoredResource.vue';
+// import StoredResource from './components/StoredResource.vue';
 export default {
   data() {
     return {
       items: [],
-      active: true,
+      add: true,
+      stored: false,
     };
   },
   components: {
     AddResource,
-    StoredResource,
+    // StoredResource,
   },
   methods: {
-    showStored() {
-      this.show = !this.show;
+    showStoredResource() {
+      this.add = false;
+      this.stored = true;
     },
-    showAdd() {
-      this.add = !this.add;
+    showAddResource() {
+      this.stored = false;
+      this.add = true;
     },
     addItem(title, description, link) {
       const newItem = {

@@ -1,5 +1,5 @@
 <template>
-  <button @click="handleClick" class="active ? 'active' : 'secondary'">
+  <button @click="handleClick">
     <slot></slot>
   </button>
 </template>
@@ -14,22 +14,13 @@ export default {
   },
   methods: {
     handleClick() {
-      this.$emit('set-active', this.active);
+      this.$emit('set-active');
     },
   },
 };
 </script>
 
 <style scoped>
-.secondary {
-  background-color: plum;
-}
-
-.active {
-  background-color: purple;
-  color: white;
-}
-
 button {
   border: none;
   padding: 12px 24px;

@@ -12,7 +12,7 @@
       Link
       <input type="text" v-model="enteredLink" />
     </label>
-    <button-component>Add data</button-component>
+    <button>Add data</button>
   </form>
 </template>
 
