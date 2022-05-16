@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="submitForm">
-    <div class="form-control" :class="{invalid: userValidity === 'invalid'}">
+    <div class="form-control" :class="{ invalid: userValidity === 'invalid' }">
       <label for="user-name">Your Name</label>
       <input id="user-name" name="user-name" type="text" v-model="name" @blur="userInputValid" />
       <p v-if="userValidity === 'invalid'">Not a valid name</p>
@@ -24,7 +24,7 @@
         <label for="interest-news">News</label>
       </div>
       <div>
-        <input id="interest-tutorials" name="interest" type="checkbox" value="tutorials"  v-model="interest" />
+        <input id="interest-tutorials" name="interest" type="checkbox" value="tutorials" v-model="interest" />
         <label for="interest-tutorials">Tutorials</label>
       </div>
       <div>
@@ -54,39 +54,39 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        name: '',
-        age: '',
-        referrer: "wom",
-        interest: [],
-        how: null,
-        userValidity: 'valid',
-      }
-    },
-    methods: {
-      submitForm() {
-        console.log(`My name is ${this.name} and I am ${this.age} years old`);
-        console.log(this.referrer);
-        console.log(this.interest);
-        console.log(this.how);
-        this.name = '';
-        this.age = '';
-        this.referrer = 'wom';
-        this.interest = [];
-        this.how = null;
+export default {
+  data() {
+    return {
+      name: '',
+      age: '',
+      referrer: "wom",
+      interest: [],
+      how: null,
+      userValidity: 'valid',
+    }
+  },
+  methods: {
+    submitForm() {
+      console.log(`My name is ${this.name} and I am ${this.age} years old`);
+      console.log(this.referrer);
+      console.log(this.interest);
+      console.log(this.how);
+      this.name = '';
+      this.age = '';
+      this.referrer = 'wom';
+      this.interest = [];
+      this.how = null;
 
-      },
-      userInputValid() {
-        if(this.name === '') {
-          this.userValidity = 'invalid'
-        }else {
-          this.userValidity = 'valid'
-        }
+    },
+    userInputValid() {
+      if (this.name === '') {
+        this.userValidity = 'invalid'
+      } else {
+        this.userValidity = 'valid'
       }
     }
   }
+}
 
 </script>
 
@@ -140,8 +140,8 @@ input[type='radio'] {
   margin-right: 1rem;
 }
 
-input[type='checkbox'] + label,
-input[type='radio'] + label {
+input[type='checkbox']+label,
+input[type='radio']+label {
   font-weight: normal;
 }
 
